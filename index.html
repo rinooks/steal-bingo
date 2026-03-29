@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>REFERENCE HRD - 스틸 빙고 Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'team-1': '#4D77FF', // Blue
+              'team-2': '#A066FF', // Purple
+              'team-3': '#FFD700', // Yellow
+              'team-4': '#00E676', // Green
+              'team-5': '#FF1744', // Red
+              'team-6': '#00E5FF', // Cyan
+              'team-7': '#FF9100', // Orange
+              'team-8': '#F50057', // Pink
+              'team-9': '#C6FF00', // Lime
+              'hrd-black': '#000000',
+              'hrd-white': '#FFFFFF',
+            },
+            fontFamily: {
+              sans: ['Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', 'sans-serif'],
+            },
+            boxShadow: {
+              'neo': '8px 8px 0px 0px #000000',
+              'neo-hover': '4px 4px 0px 0px #000000',
+              'neo-sm': '4px 4px 0px 0px #000000',
+              'neo-white': '8px 8px 0px 0px #FFFFFF',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+      
+      body {
+        /* White Theme Base */
+        background-color: #F8FAFC; /* Slate 50 */
+        
+        /* Subtle Dot Pattern for professional look */
+        background-image: radial-gradient(#CBD5E1 1.5px, transparent 1.5px);
+        background-size: 24px 24px;
+        
+        color: #000000;
+        overflow-x: hidden;
+      }
+      
+      /* 커스텀 스크롤바 (Black & White style) */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FFFFFF;
+        border-left: 2px solid #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #000000;
+      }
+
+      .bingo-burst {
+        animation: burst-scale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      @keyframes burst-scale {
+        0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      }
+      
+      .draw-line {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: dash 1s linear forwards;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      
+      /* Text Stroke Utility */
+      .text-stroke {
+        -webkit-text-stroke: 3px white;
+        text-shadow: 4px 4px 0px #000000;
+      }
+    </style>
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
