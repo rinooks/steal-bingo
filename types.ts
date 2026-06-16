@@ -46,6 +46,91 @@ export interface BingoLine {
   color: string;
 }
 
+// ===== 온라인 멀티플레이 타입 =====
+export type GameMode = 'team' | 'individual';
+
+export interface OnlineTeam {
+  id: TeamId;
+  name: string;
+  color: string;
+  hex: string;
+  textColor: string;
+  bingoCount: number;
+  stealCount: number;
+}
+
+export interface OnlinePlayer {
+  key: string;
+  name: string;
+  teamId: number | null;
+  connected: boolean;
+}
+
+export interface LobbyTeam {
+  id: number;
+  name: string;
+  color: string;
+  hex: string;
+  textColor: string;
+  members: string[];
+}
+
+// active 메타 (퀴즈 본문/정답 제외 — 다른 조엔 "푸는 중"만)
+export interface ActiveMeta {
+  kind: 'quiz' | 'steal';
+  cellIndex: number;
+  keyword: string;
+  challengerTeamId: number;
+  defenderTeamId: number | null;
+  miniGame: { id: number; title: string; description: string } | null;
+}
+
+// 서버가 보내는 공개 상태 (정답/문제본문 없음)
+export interface RoomState {
+  code: string;
+  mode: GameMode;
+  status: 'lobby' | 'playing' | 'gameover';
+  settings: {
+    boardSize: 4 | 5 | 7;
+    claimMode: ClaimMode;
+    maxSteals: number;
+    category: string;
+    teamCount: number;
+  };
+  lobbyTeams: LobbyTeam[];
+  players: OnlinePlayer[];
+  boardSize: 4 | 5 | 7;
+  claimMode: ClaimMode;
+  maxSteals: number;
+  teams: OnlineTeam[];
+  currentTurn: number;
+  winThreshold: number;
+  board: { index: number; keyword: string; owner: number | null }[];
+  completedLines: string[];
+  winningLines: BingoLine[];
+  winner: number | null;
+  logs: string[];
+  active: ActiveMeta | null;
+}
+
+// 현재 턴 팀에게만 비공개로 전달되는 풀어야 할 문제 (정답 제외)
+export interface PrivateQuiz {
+  cellIndex: number;
+  keyword: string;
+  type: QuizType;
+  question: string;
+  options: string[] | null;
+}
+
+export interface QuizResult {
+  correct: boolean;
+  byTeamId: number;
+  keyword: string;
+  answer: string;
+  explanation: string;
+  submitted: string;
+}
+
 // 게임 전체 상태
 export interface GameState {
   status: 'setup' | 'playing' | 'gameover';

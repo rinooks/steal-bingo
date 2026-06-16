@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# 런타임 문제은행 DB (시드 questions.seed.json 으로부터 최초 생성, 이후 관리자 편집분 누적)
+server/data/questions.json
+
+# Claude Code 로컬 설정
+.claude/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
